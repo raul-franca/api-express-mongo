@@ -1,0 +1,12 @@
+
+package.json :
+    add: "type": "module", // para ativar a importação/exportação do módulo ES6
+
+criar o arquivo servidor.js
+
+npm install nodemon
+add no package.json:
+    "scripts": {
+        "start": "nodemon servidor.js"
+    }
+
