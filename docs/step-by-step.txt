@@ -10,3 +10,17 @@ add no package.json:
         "start": "nodemon servidor.js"
     }
 
+npm install express
+
+cria src/app.js
+
+altera servidor.js
+para:
+import app from "./src/app.js";
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+

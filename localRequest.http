@@ -1,0 +1,28 @@
+### GET /
+GET http://localhost:3000/ HTTP/1.1
+
+### GET /cidades
+GET http://localhost:3000/cidades   HTTP/1.1
+
+### GET /cidades/1
+GET http://localhost:3000/cidades/1 HTTP/1.1
+
+### Send POST request with json body
+POST http://localhost:3000/cidades
+Content-Type: application/json
+
+{
+  "id": 9,
+  "nome": "Caruaru"
+}
+
+### Send PUT request with json body
+PUT http://localhost:3000/cidades/1
+Content-Type: application/json
+
+{
+  "nome": "Caruaru"
+}
+
+### DELETE
+DELETE http://localhost:3000/cidades/1
