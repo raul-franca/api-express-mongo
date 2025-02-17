@@ -6,6 +6,6 @@ const cidadeSchema = new mongoose.Schema({
     uf: {type: String, required: true}
 });
 
-const cidade = mongoose.model('cidade', cidadeSchema);
+const Cidade = mongoose.model('Cidade', cidadeSchema);
 
-export default cidade;
+export default Cidade;
