@@ -58,3 +58,8 @@
 **end()** é um método que envia a resposta ao cliente.
 **listen()** é um método que faz o servidor escutar em uma porta específica.
 
+---
+# MongoDB
+**Mongoose:** [Documentação oficial](https://mongoosejs.com)
+**Prisma** [link](https://www.prisma.io) opção como ferramenta de conexão do MongoDB a APIs Node.js.
+O Prisma pode ser usado com diversos gerenciadores de banco e oferece diversas funcionalidades avançadas.
