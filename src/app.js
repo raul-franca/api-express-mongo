@@ -1,5 +1,6 @@
 import express from "express";
 import cidade from "./models/cidade.js";
+import fetch from "node-fetch";
 
 
 // Criação de uma instância do express
@@ -79,6 +80,39 @@ app.delete('/cidades/:id', (req, res) => {
         res.status(500).send({ message: err.message });
     }
 });
+
+app.get('/cidades/coordenadas/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        const cidades = await cidade.findById(id);
+
+        if (!cidades) {
+            res.status(404).send('Cidade não encontrada');
+        }
+        else {
+            const url = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(cidades.nome)}&state=${encodeURIComponent(cidades.uf)}&format=json`;
+
+            const response = await fetch(url, {
+                headers: {
+                  'User-Agent': 'Node.js Application'  // Nominatim exige que o User-Agent seja especificado
+                }
+            });
+            const data = await response.json();
+            if (data && data.length > 0) {
+                res.status(200).json(data);
+            }
+        }
+    }
+    catch (err) {
+        res.status(500).send({ message: err.message });
+    }
+
+
+
+
+});
+
+
 
 
 export default app;
