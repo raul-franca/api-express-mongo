@@ -1,5 +1,6 @@
 import express from "express";
 import CidadeController from "../controllers/cidadeController.js";
+
 const router = express.Router();
 
 router.get('/cidades', CidadeController.getAllCidades);

@@ -1,8 +1,6 @@
 import express from "express";
 import cidadeRoutes from "./routes/cidadeRoutes.js";
-// import Cidade from "./models/cidade.js";
-// import fetch from "node-fetch";
-
+import rotaRoutes from "./routes/rotaRoutes.js";
 
 // Criação de uma instância do express
 const app = express();
@@ -10,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/', cidadeRoutes);
-
+app.use('/', rotaRoutes);
 
 
 export default app;

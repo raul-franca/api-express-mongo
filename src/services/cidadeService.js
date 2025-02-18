@@ -52,8 +52,8 @@ class CidadeService {
             throw new Error("Erro ao buscar coordenadas");
         }
 
-        const data = await response.json();
-        return data;
+
+        return await response.json();
     }
 }
 
