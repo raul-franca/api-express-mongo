@@ -1,5 +1,6 @@
 import CidadeService from "./cidadeService.js";
 
+
 function degreesToRadians(degrees) {
     return degrees * (Math.PI / 180);
 }
@@ -21,7 +22,7 @@ function haversineDistance(lat1, lon1, lat2, lon2) {
 
 class RotaService {
     /**
-     * Calcula a distância, tempo estimado e custo de um serviço entre duas cidades.
+     * Calcula a distância, tempo estimado e custo entre duas cidades.
      * @param {String} origemId - ID da cidade de origem.
      * @param {String} destinoId - ID da cidade de destino.
      * @returns {Object} - Objeto com distância (km), tempo estimado (min) e custo.
@@ -31,6 +32,7 @@ class RotaService {
         let distance = 0;
         let remetente = "";
         let destinatario = "";
+
         // Recupera as cidades pelo ID
         const origem = await CidadeService.getCidadeById(origemId);
         const destino = await CidadeService.getCidadeById(destinoId);
@@ -38,9 +40,9 @@ class RotaService {
         if (!origem || !destino) {
             throw new Error("Cidade de origem ou destino não encontrada");
         }
-
-        remetente = origem.nome + ", " + origem.uf;
-        destinatario = destino.nome + ", " + destino.uf;
+        // Formata o nome e UF para exibição
+        remetente = origem.nome + "-" + origem.uf;
+        destinatario = destino.nome + "-" + destino.uf;
 
         // Verifica se as coordenadas estão disponíveis
         if (
@@ -50,8 +52,9 @@ class RotaService {
             destino.lon == null
         ) {
             // Busca as coordenadas através da API do Nominatim
-            var origemCoordenadas = await CidadeService.getCoordenadas(origem);
-            var destinoCoordenadas = await CidadeService.getCoordenadas(destino);
+            const origemCoordenadas = await CidadeService.getCoordenadas(origem);
+            const destinoCoordenadas = await CidadeService.getCoordenadas(destino);
+
             // Calcula a distância em km usando a fórmula de Haversine
              distance = haversineDistance( parseFloat(origemCoordenadas[0].lat),
                 parseFloat(origemCoordenadas[0].lon),
@@ -59,6 +62,10 @@ class RotaService {
                 parseFloat(destinoCoordenadas[0].lon));
 
             // Atualiza as coordenadas no banco de dados
+
+            await CidadeService.updateCidade(origemId, { lat : parseFloat(origemCoordenadas[0].lat), lon : parseFloat(origemCoordenadas[0].lon)});
+            await CidadeService.updateCidade(destinoId, { lat : parseFloat(destinoCoordenadas[0].lat), lon : parseFloat(destinoCoordenadas[0].lon)});
+
         }else{
             distance = haversineDistance(Number(origem[0].lat),
                 Number(origem[0].lon),
@@ -76,7 +83,6 @@ class RotaService {
         const baseCost = 5.0; // custo fixo em reais
         const costPerKm = 1.1; // custo por km
         const cost = baseCost + distance * costPerKm;
-
 
 
         return { remetente, destinatario , distance, timeInMinutes, cost };
