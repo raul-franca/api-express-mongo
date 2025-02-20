@@ -1,6 +1,6 @@
 # API RESTful com Node.js, Express.js e MongoDB 🚀
 
-Esta API demonstra conceitos essenciais de desenvolvimento, incluindo o padrão de arquitetura MVC, validação de dados e tratamento de erros, além de implementar operações CRUD utilizando Node.js, Express.js e MongoDB.🧐
+Esta API demonstra conceitos essenciais de desenvolvimento, incluindo o padrão de arquitetura MVC, validação de dados e tratamento de erros, além de implementar operações CRUD utilizando Node.js, Express.js e MongoDB.  
 
 ## Funcionalidades ✨
 - **Rotas RESTful:** Operações CRUD básicas.

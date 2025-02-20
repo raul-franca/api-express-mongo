@@ -2,8 +2,27 @@ import CidadeService from "../services/cidadeService.js";
 
 class CidadeController {
     static async getAllCidades(req, res) {
+
         try {
             const result = await CidadeService.getAllCidades(req.query);
+            return res.status(200).json(result);
+        } catch (err) {
+            return res.status(500).json({ message: err.message });
+        }
+    }
+
+    static async getAllCidadesByUf(req, res) {
+        try {
+            const result = await CidadeService.getAllCidadesByUf(req.query);
+            return res.status(200).json(result);
+        } catch (err) {
+            return res.status(500).json({ message: err.message });
+        }
+    }
+
+    static async getAllCidadesByNome(req, res) {
+        try {
+            const result = await CidadeService.getAllCidadesByNome(req.query);
             return res.status(200).json(result);
         } catch (err) {
             return res.status(500).json({ message: err.message });

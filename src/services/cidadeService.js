@@ -14,7 +14,30 @@ class CidadeService {
 
         return { total, totalPages, page, limit, cidades };
     }
+    // Busca todas as cidades por uf com paginação
+    static async getAllCidadesByUf(query) {
+        let limit = parseInt(query.limit, 10) || 10;
+        let page = parseInt(query.page, 10) || 1;
+        const skip = (page - 1) * limit;
 
+        const cidades = await Cidade.find({uf: query.uf}).skip(skip).limit(limit);
+        const total = await Cidade.countDocuments({uf: query.uf});
+        const totalPages = Math.ceil(total / limit);
+
+        return {total, totalPages, page, limit, cidades};
+    }
+    // Busca todas as cidades por nome com paginação
+    static async getAllCidadesByNome(query) {
+        let limit = parseInt(query.limit, 10) || 10;
+        let page = parseInt(query.page, 10) || 1;
+        const skip = (page - 1) * limit;
+
+        const cidades = await Cidade.find({nome: query.nome}).skip(skip).limit(limit);
+        const total = await Cidade.countDocuments({nome: query.nome});
+        const totalPages = Math.ceil(total / limit);
+
+        return {total, totalPages, page, limit, cidades};
+    }
     // Busca uma cidade pelo ID
     static async getCidadeById(id) {
         return await Cidade.findById(id);
