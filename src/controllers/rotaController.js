@@ -1,4 +1,3 @@
-import distanceService from "../services/rotaService.js";
 import rotaService from "../services/rotaService.js";
 
 class RotaController {

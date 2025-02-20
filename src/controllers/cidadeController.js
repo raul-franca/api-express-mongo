@@ -1,4 +1,5 @@
 import CidadeService from "../services/cidadeService.js";
+import mongoose from "mongoose";
 
 class CidadeController {
     static async getAllCidades(req, res) {
@@ -14,7 +15,11 @@ class CidadeController {
     static async getAllCidadesByUf(req, res) {
         try {
             const result = await CidadeService.getAllCidadesByUf(req.query);
-            return res.status(200).json(result);
+            if (result !== null) {
+                return res.status(200).json(result);
+            }
+            return res.status(404).json({ message: "UF não encontrada" });
+
         } catch (err) {
             return res.status(500).json({ message: err.message });
         }
@@ -23,7 +28,10 @@ class CidadeController {
     static async getAllCidadesByNome(req, res) {
         try {
             const result = await CidadeService.getAllCidadesByNome(req.query);
-            return res.status(200).json(result);
+            if(result !== null){
+                return res.status(200).json(result);
+            }
+            return res.status(404).json({ message: "Cidade não encontrada" });
         } catch (err) {
             return res.status(500).json({ message: err.message });
         }
@@ -38,7 +46,11 @@ class CidadeController {
             }
             return res.status(200).json(cidade);
         } catch (err) {
-            return res.status(500).json({ message: err.message });
+            if (err instanceof mongoose.Error.CastError) {
+                return res.status(400).json({ message: "ID inválido" });
+            }else{
+                return res.status(500).json({ message: err.message });
+            }
         }
     }
 
@@ -93,6 +105,7 @@ class CidadeController {
             } else {
                 return res.status(404).json({ message: "Coordenadas não encontradas" });
             }
+
         } catch (err) {
             return res.status(500).json({ message: err.message });
         }
