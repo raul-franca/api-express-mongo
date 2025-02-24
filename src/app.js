@@ -10,5 +10,10 @@ app.use(express.json());
 app.use('/', cidadeRoutes);
 app.use('/', rotaRoutes);
 
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(500).send({ error: err.message });
+});
+
 
 export default app;
