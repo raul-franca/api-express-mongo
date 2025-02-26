@@ -3,7 +3,8 @@ import CidadeService from "../services/cidadeService.js";
 class CidadeController {
     static async getAllCidades(req, res, next) {
         try {
-            const result = await CidadeService.getAllCidades(req.query);
+            const result = await CidadeService.getAllCidades(req.query, req.pagination);
+
             return res.status(200).json(result);
         } catch (err) {
             next(err);

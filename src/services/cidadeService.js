@@ -3,16 +3,17 @@ import fetch from "node-fetch";
 
 class CidadeService {
     // Busca todas as cidades com paginação
-    static async getAllCidades(query) {
-        let limit = parseInt(query.limit, 10) || 10;
-        let page = parseInt(query.page, 10) || 1;
-        const skip = (page - 1) * limit;
+    static async getAllCidades(query, pagination) {
+
+        const { limit, skip } = pagination;
 
         const cidades = await Cidade.find().skip(skip).limit(limit);
+
         const total = await Cidade.countDocuments();
         const totalPages = Math.ceil(total / limit);
 
-        return { total, totalPages, page, limit, cidades };
+        return { total, totalPages, page: pagination.page, limit, cidades };
+
     }
     //filtro por uf e nome
     static async getAllCidadesByUfAndNome(query) {
