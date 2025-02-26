@@ -1,11 +1,9 @@
-### GET /
-GET http://localhost:3000/ HTTP/1.1
 
 ### GET /cidades
 GET http://localhost:3000/cidades   HTTP/1.1
 
-### GET /cidades/1
-GET http://localhost:3000/cidades/1 HTTP/1.1
+### GET /cidades/67b0b9016854b01216312b26
+GET http://localhost:3000/cidades/67b0b9016854b01216312b26 HTTP/1.1
 
 ### Send POST request with json body
 POST http://localhost:3000/cidades
@@ -16,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Send PUT request with json body
-PUT http://localhost:3000/cidades/1
+PUT http://localhost:3000/cidades/67b2488ab148eec69f87cd0a
 Content-Type: application/json
 
 {

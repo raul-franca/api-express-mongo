@@ -67,10 +67,8 @@ class RotaService {
             await CidadeService.updateCidade(destinoId, { lat : parseFloat(destinoCoordenadas[0].lat), lon : parseFloat(destinoCoordenadas[0].lon)});
 
         }else{
-            distance = haversineDistance(Number(origem[0].lat),
-                Number(origem[0].lon),
-                Number(destino[0].lat),
-                Number(destino[0].lon));
+            // Calcula a distância em km usando a fórmula de Haversine
+            distance = haversineDistance(origem.lat, origem.lon, destino.lat, destino.lon);
         }
 
 
