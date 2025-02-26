@@ -14,6 +14,25 @@ class CidadeService {
 
         return { total, totalPages, page, limit, cidades };
     }
+    //filtro por uf e nome
+    static async getAllCidadesByUfAndNome(query) {
+
+        const filter = {};
+
+        if (query.uf) {
+            filter.uf = new RegExp(query.uf, "i")
+        }
+
+        if (query.nome) {
+            filter.nome = new RegExp(query.nome, "i")
+        }
+
+        const cidades = await Cidade.find(filter);
+
+        return {cidades};
+    }
+
+
     // Busca todas as cidades por uf com paginação
     static async getAllCidadesByUf(query) {
         let limit = parseInt(query.limit, 10) || 10;

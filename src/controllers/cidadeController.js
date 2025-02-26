@@ -10,9 +10,10 @@ class CidadeController {
         }
     }
 
+
     static async getAllCidadesByUf(req, res, next) {
         try {
-            const result = await CidadeService.getAllCidadesByUf(req.query);
+            const result = await CidadeService.getAllCidadesByUf(req.params);
             if (result !== null) {
                 return res.status(200).json(result);
             }
@@ -24,12 +25,25 @@ class CidadeController {
     }
 
     static async getAllCidadesByNome(req, res,next) {
+
         try {
-            const result = await CidadeService.getAllCidadesByNome(req.query);
+            const result = await CidadeService.getAllCidadesByNome(req.params);
             if(result !== null){
                 return res.status(200).json(result);
             }
             return res.status(404).json({ message: "Cidade não encontrada" });
+        } catch (err) {
+            next(err);
+        }
+    }
+
+    static async getAllCidadesByUfAndNome(req, res, next) {
+        try {
+            const result = await CidadeService.getAllCidadesByUfAndNome(req.query);
+            if (result !== null) {
+                return res.status(200).json(result);
+            }
+            return res.status(404).json({ message: "UF e Nome não encontrados" });
         } catch (err) {
             next(err);
         }
