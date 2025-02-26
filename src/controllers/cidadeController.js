@@ -11,10 +11,10 @@ class CidadeController {
         }
     }
 
-
     static async getAllCidadesByUf(req, res, next) {
+
         try {
-            const result = await CidadeService.getAllCidadesByUf(req.params);
+            const result = await CidadeService.getAllCidadesByUf(req.params, req.pagination);
             if (result !== null) {
                 return res.status(200).json(result);
             }
@@ -28,7 +28,7 @@ class CidadeController {
     static async getAllCidadesByNome(req, res,next) {
 
         try {
-            const result = await CidadeService.getAllCidadesByNome(req.params);
+            const result = await CidadeService.getAllCidadesByNome(req.params, req.pagination);
             if(result !== null){
                 return res.status(200).json(result);
             }
@@ -40,7 +40,7 @@ class CidadeController {
 
     static async getAllCidadesByUfAndNome(req, res, next) {
         try {
-            const result = await CidadeService.getAllCidadesByUfAndNome(req.query);
+            const result = await CidadeService.getAllCidadesByUfAndNome(req.query, req.pagination);
             if (result !== null) {
                 return res.status(200).json(result);
             }

@@ -1,6 +1,14 @@
 
-
 function pagination(req, res, next) {
+
+    if (!req.query) {
+        req.pagination = {
+            page: 1,
+            limit: 10,
+            skip: 0
+        };
+        return next();
+    }
 
     let { page = 1, limit = 10 } = req.query;
 
@@ -10,7 +18,6 @@ function pagination(req, res, next) {
     if (isNaN(page) || page <= 0) {
         return res.status(400).json({ error: "Número de page inválido" });
     }
-
     if (isNaN(limit) || limit <= 0) {
         return res.status(400).json({ error: "Número limit inválido" });
     }
