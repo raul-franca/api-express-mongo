@@ -33,7 +33,7 @@ class CidadeService {
 
     // Busca todas as cidades por uf com paginação
     static async getAllCidadesByUf(query, pagination) {
-
+        console.log(query);
         const uf = new RegExp(query.uf, "i");
 
         const { limit, skip } = pagination;
