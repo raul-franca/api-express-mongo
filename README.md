@@ -1,6 +1,6 @@
 # API RESTful com Node.js, Express.js e MongoDB 🚀
-
-Esta API demonstra conceitos essenciais de desenvolvimento, incluindo o padrão de arquitetura MVC, validação de dados e tratamento de erros, além de implementar operações CRUD utilizando Node.js, Express.js e MongoDB.  
+ <img src="docs/img.png" alt="image" />
+Esta API demonstra conceitos essenciais de desenvolvimento, incluindo o padrão de arquitetura MVC, validação de dados e tratamento de erros, além de implementar operações CRUD, documentação Swagger utilizando Node.js, Express.js e MongoDB.  
 
 # Qual problema ela aborda? 🧐
 
