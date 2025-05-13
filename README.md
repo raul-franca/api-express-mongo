@@ -49,9 +49,16 @@ f( remetente, destinatario ) = { distância , valor estimado , previsão do temp
 ```bash
    npm start
 ```
-5. **Acesse a API em:**
+
+# Testar API com o Docker 🐳
 ```bash
-   http://localhost:3000
+    docker-compose build
+    docker-compose up
+```
+
+## Documentação da API 📜
+```bash
+    open http://localhost:3000/api-docs/
 ```
 
 # Estrutura de Pastas 📁
