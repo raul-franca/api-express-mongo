@@ -49,9 +49,21 @@ f( remetente, destinatario ) = { distância , valor estimado , previsão do temp
 ```bash
    npm start
 ```
-5. **Acesse a API em:**
+
+# Testar API com o Docker 🐳
+1. **Clone o repositório:**
 ```bash
-   http://localhost:3000
+   git clone https://github.com/raul-franca/api-express-mongo
+```
+2. **Inicie o Docker:**
+```bash
+    docker-compose build
+    docker-compose up 
+```
+
+## Documentação da API 📜
+```bash
+    open http://localhost:3000/api-docs/
 ```
 
 # Estrutura de Pastas 📁
